@@ -1,6 +1,6 @@
 const DEFAULT_TRANSLATIONS_PATH = './resources/lang';
 const DEFAULT_LOCALE = 'en';
-let TranslationBluePrint = require('./translation');
+let Translation = require('./translation');
 
 class Translator
 {
@@ -15,6 +15,13 @@ class Translator
 		this.locale = locale;
 		this.scheme = {};
 		this.translations = {};
+
+		if(! this.isDefaultTranslator())
+		{
+			this.defaultTranslator = (new Translator(DEFAULT_LOCALE))
+		}
+
+		// load translations ..
 		this.loadTranslations();
 	}
 
@@ -67,13 +74,14 @@ class Translator
 	/**
 	 * Load tranlsations to translator.
 	 *
+	 * @param {string} locale
 	 * @return {this}
 	 */
-	loadTranslations()
+	loadTranslations(locale = null)
 	{
 		try
 		{
-			let _path = `${this.getTranslationsPath()}/${this.getLocale()}`;
+			let _path = `${this.getTranslationsPath()}/${locale ? locale : this.getLocale()}/general`;
 
 			let scheme = require.main.require(_path);
 
@@ -95,7 +103,7 @@ class Translator
 	 */
 	printLoadError(err)
 	{
-		console.log(`Unable to load transltions scheme for ${this.getLocale()}`);
+		console.log(`Unable to load transltions scheme for "${this.getLocale()}"`);
 		console.log(err);
 	}
 
@@ -126,7 +134,7 @@ class Translator
 	 */
 	setTranslations(scheme)
 	{
-		this.translations = (new TranslationBluePrint(scheme));
+		this.translations = (new Translation(scheme));
 
 		return this;
 	}
@@ -164,7 +172,52 @@ class Translator
 	{
 		this.setScheme(scheme);
 
-		this.setTranslations(scheme);
+		if(! this.isDefaultTranslator())
+		{
+			this.setTranslations(
+				this.mergeTranslations(scheme, this.getDefaultTranslator().getScheme())
+			);
+		} else {
+			this.setTranslations(scheme);
+		}
+	}
+
+	/**
+	 * Check if translator of default locale.
+	 *
+	 * @return {Boolean}
+	 */
+	isDefaultTranslator()
+	{
+		return this.getLocale() == DEFAULT_LOCALE;
+	}
+
+	/**
+	 * Merge setted translations with default.
+	 *
+	 * @param {object} scheme Setted object list
+	 * @param {object} defaultScheme Default scheme translations
+	 * @return {Object}
+	 */
+	mergeTranslations(scheme, defaultScheme)
+	{
+		let _keys_defaultScheme = Object.keys(defaultScheme);
+		let _keys_scheme = Object.keys(scheme);
+		let _temp = {};
+
+		// manage default translations..
+		for(let i = 0; i < _keys_defaultScheme.length; i++)
+		{
+			_temp[_keys_defaultScheme[i]] = defaultScheme[_keys_defaultScheme[i]];
+		}
+
+		// manage setted translations..
+		for(let i = 0; i < _keys_scheme.length; i++)
+		{
+			_temp[_keys_scheme[i]] = scheme[_keys_scheme[i]];
+		}
+
+		return _temp;
 	}
 
 	/**
@@ -176,7 +229,14 @@ class Translator
 	 */
 	translate(key, _default = '')
 	{
-		return this.getTranslations().get(key, _default);
+		let trans = this.getTranslations();
+
+		if(trans instanceof Translation)
+		{
+			return trans.get(key, _default);
+		}
+
+		return _default;
 	}
 
 	/**
@@ -199,6 +259,16 @@ class Translator
 	lang()
 	{
 		return this.getLocale();
+	}
+
+	/**
+	 * Get default locale translator.
+	 *
+	 * @return {Translator}
+	 */
+	getDefaultTranslator()
+	{
+		return this.defaultTranslator;
 	}
 }
 
