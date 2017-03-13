@@ -9,12 +9,13 @@ class Translator
 	 *
 	 * @return Translator
 	 */
-	constructor(locale = DEFAULT_LOCALE)
+	constructor(locale = DEFAULT_LOCALE, currentUrl = '')
 	{
 		this.setTranslationsPath(DEFAULT_TRANSLATIONS_PATH);
 		this.locale = locale;
 		this.scheme = {};
 		this.translations = {};
+		this.currentUrl = currentUrl;
 
 		if(! this.isDefaultTranslator())
 		{
@@ -269,6 +270,38 @@ class Translator
 	getDefaultTranslator()
 	{
 		return this.defaultTranslator;
+	}
+
+	/**
+	 * Get current url path.
+	 *
+	 * @return {string}
+	 */
+	getCurrentUrl()
+	{
+		return this.currentUrl;
+	}
+
+	/**
+	 * Render locale url path.
+	 *
+	 * @return {string}
+	 */
+	renderLocaleUrl(locale = DEFAULT_LOCALE)
+	{
+		let currentUrl = this.getCurrentUrl();
+
+		if(! currentUrl.indexOf(locale))
+		{
+			currentUrl = `/${locale}${currentUrl}`
+
+		} else {
+			currentUrl = currentUrl.replace(this.getLocale(), locale);
+		}
+
+		console.log(currentUrl);
+
+		return currentUrl;
 	}
 }
 

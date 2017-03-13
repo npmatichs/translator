@@ -14,7 +14,9 @@ module.exports = function * (req, res, next) {
     {
         req.session.lang = locale || req.session.lang;    
 
-        req.translator = (new Translator(req.session.lang));
+        req.translator = (new Translator(
+            req.session.lang, req.originalUrl
+        ));
 
     } else {
 
