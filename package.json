@@ -15,5 +15,8 @@
     "translatable"
   ],
   "author": "magrigoroae",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "co": "^4.6.0"
+  }
 }
