@@ -1,4 +1,4 @@
-let Translator = require('./index');
+let Translator = require('./translator');
 const DEFAULT_LOCALE = 'en';
 
 module.exports = function * (req, res, next) {

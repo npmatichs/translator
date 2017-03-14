@@ -1,15 +1,19 @@
 {
   "name": "translator",
   "version": "1.0.0",
-  "description": "",
+  "description": "nodejs vocabularic localizator",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git@10.1.1.159:magrigoroae/translator.git"
+    "url": "git@10.1.1.159:npm-packages/translator.git"
   },
-  "author": "",
+  "keywords": [
+    "nodejs",
+    "translatable"
+  ],
+  "author": "magrigoroae",
   "license": "ISC"
 }
