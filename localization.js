@@ -2,13 +2,21 @@ let Translator = require('./index');
 const DEFAULT_LOCALE = 'en';
 
 module.exports = function * (req, res, next) {
+    let locale = req.params.lang;
+
     if(req.method != 'GET') 
     {
+        // le costeliano ...
+        if(req.session.lang)
+        {
+            req.translator = (new Translator(
+                req.session.lang, req.originalUrl
+            ));
+        }
+
         // skip post, put, delete methods.
         return next();
     }
-    
-    let locale = req.params.lang;
 
     if(locale)
     {

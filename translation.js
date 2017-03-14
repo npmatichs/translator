@@ -22,7 +22,7 @@ class Translation
     {
     	return this.getScheme()[key] 
     		? this.getScheme()[key] 
-    		: _default; 
+    		: (_default ? _default : key); 
     }
 
     /**
