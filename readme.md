@@ -35,6 +35,9 @@ exports.function = index = (req, res, next) => {
 ```
 That's it. Just use in your view the next code to translate some key:
 
-``` trans('hello_world')```
+``` 
+p Just look at my translated !{trans('hello_world')}.
 
-it will printet the "Hello World" if your access the ```domain/en/``` url address.
+```
+
+it will printet the "<p>Just look at my translated Hello World!!!</p>".
