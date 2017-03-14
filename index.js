@@ -2,7 +2,7 @@ let localization = require('./localization');
 let wrap = require('co').wrap;
 
 /**
- * Localize middleware generator function.
+ * Localize middleware generator function. test
  *
  * @require: expressjs^4.0 
  * @param {req} req
