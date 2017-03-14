@@ -299,8 +299,6 @@ class Translator
 			currentUrl = currentUrl.replace(this.getLocale(), locale);
 		}
 
-		console.log(currentUrl);
-
 		return currentUrl;
 	}
 
