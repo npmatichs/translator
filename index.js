@@ -9,6 +9,6 @@ let wrap = require('co').wrap;
  * @param {res} res
  * @param {function} next
  */
-module.exports = function * (req, res, next) => {
+module.exports = function * (req, res, next) {
     return wrap(localization(req, res, next));
 };
