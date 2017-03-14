@@ -1,5 +1,5 @@
 let localization = require('./localization');
-let wrap = require('co').wrap;
+// let wrap = require('co').wrap;
 
 /**
  * Localize middleware generator function.
@@ -9,6 +9,7 @@ let wrap = require('co').wrap;
  * @param {res} res
  * @param {function} next
  */
-module.exports = function * (req, res, next) {
-    return wrap(localization(req, res, next));
+module.exports = function (req, res, next) {
+    // return wrap(localization(req, res, next));
+    return localization(req, res, next);
 };
