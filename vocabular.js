@@ -1,10 +1,10 @@
-class Translation
+class Vocabular
 {
     /**
-     * Translation constructor
+     * Vocabular constructor
      *
      * @param {object} scheme Library with translations.
-     * @return Translation
+     * @return Vocabular
      */
     constructor(scheme)
     {
@@ -36,4 +36,4 @@ class Translation
     }
 }
 
-module.exports = Translation;
+module.exports = Vocabular;

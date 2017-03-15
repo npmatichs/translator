@@ -1,6 +1,6 @@
 const DEFAULT_TRANSLATIONS_PATH = 'resources/lang';
 const DEFAULT_LOCALE = 'en';
-let Translation = require('./translation');
+let Vocabular = require('./vocabular');
 let fs = require('fs');
 let path = require('path');
 let b = require('bluebird');
@@ -138,7 +138,7 @@ class Translator
 	 */
 	setTranslations(scheme)
 	{
-		this.translations = (new Translation(scheme));
+		this.translations = (new Vocabular(scheme));
 
 		return this;
 	}
@@ -235,7 +235,7 @@ class Translator
 	{
 		let trans = this.getTranslations();
 
-		if(trans instanceof Translation)
+		if(trans instanceof Vocabular)
 		{
 			return trans.get(key, _default);
 		}
