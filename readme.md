@@ -41,3 +41,21 @@ p Just look at my translated !{trans('hello_world')}.
 ```
 
 it will printet the "<p>Just look at my translated Hello World!!!</p>".
+
+
+# Advices
+
+Parse all directories and render the language panel. Exists 2 possibilities to get languages ```async``` and ```sync```. To get Folders ```sync``` call the ```getLanguagesSync()``` method of ```Translator``` instance and for ```async``` use ```getLanguagesAsync()```. It will returns the ```Array``` with your folders, now below I show the example how we can use it (as a template generator i used ```pug```):
+
+```
+if(languages)
+    li
+        a.dropdown-toggle(data-toggle="dropdown") !{translator.getLocale().toUpperCase()}
+
+        ul.dropdown-menu
+            each language in languages
+                li.dropdown
+                    if(language != translator.getLocale())
+                    a.m-r-sm.white(href=translator.renderLocaleUrl(language))
+                        |  !{language.toUpperCase()}
+```
