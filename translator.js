@@ -82,11 +82,11 @@ class Translator
 	 */
 	loadTranslations(locale = null)
 	{
+		let _path = `${this.getTranslationsFullPath()}/${locale ? locale : this.getLocale()}/general`;
+
 		try
 		{
-			let _path = `${this.getTranslationsPath()}/${locale ? locale : this.getLocale()}/general`;
-
-			let scheme = require.main.require(_path);
+			let scheme = require(_path);
 
 			this.initScheme(scheme);
 		}
@@ -326,30 +326,61 @@ class Translator
 	};
 
 	/**
-	 * Get available languages based folders.
+	 * Get async available languages based folders.
 	 *
-	 * @return {Array}
+	 * @return {Promise|Array}
 	 */
-	getLanguages()
+	getLanguagesAsync()
 	{
 		let languages = [];
-
-		console.log(this.getTranslationsFullPath());
 
 		fs.readdir(this.getTranslationsFullPath(), (err, files) => {
 			if(err)
 			{
 				console.log(err);
-
-				return;
 			}
 
-			files.forEach(file => {
-				console.log(file);
-			});
+			if(files)
+			{
+				let _count = files.length;
+
+				for(let i = 0; i < _count; i++)
+				{
+					languages.push(files[i]);
+				}
+			}
+
+			return languages;
+		});
+	}
+
+	/**
+	 * Get sync available languages based folders.
+	 *
+	 * @return {Array}
+	 */
+	getLanguagesSync()
+	{
+		let languages = [];
+
+		fs.readdirSync(this.getTranslationsFullPath(), (err, files) => {
+			if(err)
+			{
+				console.log(err);
+			}
+
+			if(files)
+			{
+				let _count = files.length;
+
+				for(let i = 0; i < _count; i++)
+				{
+					languages.push(files[i]);
+				}
+			}
 		});
 
-		return languages;
+		return languages;	
 	}
 
 	/**
