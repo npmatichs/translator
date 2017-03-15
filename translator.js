@@ -1,8 +1,8 @@
 const DEFAULT_TRANSLATIONS_PATH = './resources/lang';
 const DEFAULT_LOCALE = 'en';
 let Translation = require('./translation');
-let fs = requre('fs');
-let path = requre('path');
+let fs = require('fs');
+let path = require('path');
 
 class Translator
 {
