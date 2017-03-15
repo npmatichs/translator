@@ -49,13 +49,14 @@ Parse all directories and render the language panel. Exists 2 possibilities to g
 
 ```
 if(languages)
-    li
-        a.dropdown-toggle(data-toggle="dropdown") !{translator.getLocale().toUpperCase()}
+    li.dropdown
+        a.dropdown-toggle(href="#", data-toggle="dropdown", aria-expanded="false").
+            !{translator.getLocale().toUpperCase()} #[span.caret]
 
         ul.dropdown-menu
             each language in languages
                 li.dropdown
                     if(language != translator.getLocale())
-                    a.m-r-sm.white(href=translator.renderLocaleUrl(language))
-                        |  !{language.toUpperCase()}
+	                    a.m-r-sm.white(href=translator.renderLocaleUrl(language))
+	                        |  !{language.toUpperCase()}
 ```
