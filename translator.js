@@ -1,4 +1,4 @@
-const DEFAULT_TRANSLATIONS_PATH = './resources/lang';
+const DEFAULT_TRANSLATIONS_PATH = 'resources/lang';
 const DEFAULT_LOCALE = 'en';
 let Translation = require('./translation');
 let fs = require('fs');
