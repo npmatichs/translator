@@ -1,6 +1,8 @@
 const DEFAULT_TRANSLATIONS_PATH = './resources/lang';
 const DEFAULT_LOCALE = 'en';
 let Translation = require('./translation');
+let fs = requre('fs');
+let path = requre('path');
 
 class Translator
 {
@@ -322,6 +324,45 @@ class Translator
 
 	    return text;
 	};
+
+	/**
+	 * Get available languages based folders.
+	 *
+	 * @return {Array}
+	 */
+	getLanguages()
+	{
+		let languages = [];
+
+		console.log(this.getTranslationsFullPath());
+
+		fs.readdir(this.getTranslationsFullPath(), (err, files) => {
+			if(err)
+			{
+				console.log(err);
+
+				return;
+			}
+
+			files.forEach(file => {
+				console.log(file);
+			});
+		});
+
+		return languages;
+	}
+
+	/**
+	 * Get full translations path from the root app.
+	 *
+	 * @return {string}
+	 */
+	getTranslationsFullPath()
+	{
+		return path.dirname(require.main.filename) 
+			+ '/' 
+			+ this.getTranslationsPath();
+	}
 }
 
 module.exports = Translator;
