@@ -3,6 +3,7 @@ const DEFAULT_LOCALE = 'en';
 let Translation = require('./translation');
 let fs = require('fs');
 let path = require('path');
+let b = require('bluebird');
 
 class Translator
 {
@@ -334,6 +335,8 @@ class Translator
 	{
 		let languages = [];
 
+		let deffered = b.defer();
+
 		fs.readdir(this.getTranslationsFullPath(), (err, files) => {
 			if(err)
 			{
@@ -350,8 +353,10 @@ class Translator
 				}
 			}
 
-			return languages;
+			deffered.resolve(languages);
 		});
+
+		return deffered.promise;
 	}
 
 	/**
@@ -380,7 +385,7 @@ class Translator
 			}
 		});
 
-		return languages;	
+		return languages;
 	}
 
 	/**
