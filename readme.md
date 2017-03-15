@@ -8,11 +8,14 @@ Do you need to have translations vocabularic?? Now it easy with this package!!! 
  - express ```^4.14.0``` NodeJS framework.
 
 # Install (step I)
-SSH:
+	SSH:
+```
     npm install git+ssh://git@10.1.1.159:npm-packages/translator.git --save
-
-or use http:
+```
+or use HTTPS:
+```
 	npm install git+http://git.devebs.net/npm-packages/translator.git --save
+```
 
 # Connect as middleware (step II)
 Require the package ``` let localization = require("translator");``` to your middleware like in example below:
