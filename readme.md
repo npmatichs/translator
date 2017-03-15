@@ -8,7 +8,7 @@ Do you need to have translations vocabularic?? Now it easy with this package!!! 
  - express ```^4.14.0``` NodeJS framework.
 
 # Install (step I)
-	SSH:
+SSH:
 ```
     npm install git+ssh://git@10.1.1.159:npm-packages/translator.git --save
 ```
