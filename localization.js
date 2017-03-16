@@ -30,7 +30,12 @@ module.exports = function * (req, res, next) {
 
         req.session.lang = req.session.lang || DEFAULT_LOCALE;    
 
-        return res.redirect(`/${req.session.lang}${req.originalUrl}`);
+        if(! req.xhr)
+        {
+            // redirect for non-ajax requests.
+
+            return res.redirect(`/${req.session.lang}${req.originalUrl}`);
+        }
     }
 
     return next();
