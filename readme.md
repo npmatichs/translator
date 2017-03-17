@@ -1,5 +1,8 @@
 # NodeJS Localizer based vocabulars.
 
+[![Build Status](https://scrutinizer-ci.com/g/npmatichs/translator/badges/build.png?b=master)](https://scrutinizer-ci.com/g/npmatichs/translator/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/npmatichs/translator/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/npmatichs/translator/?branch=master)
+
 Do you need to have translations vocabularic?? Now it easy with this package!!! Easy install, easy connect, easy to add your translations to vocabular. Learn the documentation below how to use.
 
 # Requirements
