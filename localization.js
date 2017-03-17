@@ -20,11 +20,7 @@ module.exports = function * (req, res, next) {
 
     if(locale)
     {
-        req.session.lang = locale || req.session.lang;    
-
-        req.translator = (new Translator(
-            req.session.lang, req.originalUrl
-        ));
+        req.session.lang = locale || req.session.lang;
 
     } else {
 
@@ -37,6 +33,8 @@ module.exports = function * (req, res, next) {
             return res.redirect(`/${req.session.lang}${req.originalUrl}`);
         }
     }
+
+    req.translator = (new Translator(req.session.lang, req.originalUrl));
 
     return next();
 }
