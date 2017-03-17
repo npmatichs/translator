@@ -10,11 +10,12 @@ Do you need to have translations vocabularic?? Now it easy with this package!!! 
 # Install (step I)
 SSH:
 ```
-    npm install git+ssh://git@10.1.1.159:npm-packages/translator.git --save
+npm install git+ssh://git@10.1.1.159:npm-packages/translator.git --save
 ```
-or use HTTPS:
+
+HTTP:
 ```
-	npm install git+http://git.devebs.net/npm-packages/translator.git --save
+npm install git+http://git.devebs.net/npm-packages/translator.git --save
 ```
 
 # Connect as middleware (step II)
